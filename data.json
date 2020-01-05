@@ -1,0 +1,164 @@
+{
+  "clients": [
+    {
+      "id": 1,
+      "name": "Roth C. Workman",
+      "phone": "+5555805623712",
+      "email": "Vivamus.non.lorem@anunc.co.uk",
+      "cpf": "81088420261",
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "Farrah J. David",
+      "phone": "+5508898952564",
+      "email": "at.lacus@turpisIn.org",
+      "cpf": "84511891101",
+      "active": true
+    },
+    {
+      "id": 3,
+      "name": "Claire O. Nieves",
+      "phone": "+5572455634740",
+      "email": "arcu.Nunc@semegestasblandit.com",
+      "cpf": "28084100904",
+      "active": true
+    },
+    {
+      "id": 4,
+      "name": "Malachi Q. Pierce",
+      "phone": "+5501753695409",
+      "email": "Nullam.scelerisque@risusaultricies.ca",
+      "cpf": "20617399538",
+      "active": true
+    },
+    {
+      "id": 5,
+      "name": "Stephen D. Lucas",
+      "phone": "+5553176215809",
+      "email": "augue.malesuada.malesuada@Vivamusnibh.edu",
+      "cpf": "42732809860",
+      "active": true
+    },
+    {
+      "id": 6,
+      "name": "Aphrodite P. Lewis",
+      "phone": "+5551646148430",
+      "email": "nisl.elementum.purus@loremutaliquam.ca",
+      "cpf": "70829967182",
+      "active": true
+    },
+    {
+      "id": 7,
+      "name": "Serina J. Blevins",
+      "phone": "+5561755739297",
+      "email": "sit.amet@ProinmiAliquam.edu",
+      "cpf": "53899990341",
+      "active": true
+    },
+    {
+      "id": 8,
+      "name": "Chantale J. Aguirre",
+      "phone": "+5569131704517",
+      "email": "hendrerit.id.ante@Namconsequat.edu",
+      "cpf": "11063017084",
+      "active": true
+    },
+    {
+      "id": 9,
+      "name": "Lawrence D. Roach",
+      "phone": "+5563896273360",
+      "email": "orci.adipiscing@erat.org",
+      "cpf": "19790219736",
+      "active": true
+    },
+    {
+      "id": 10,
+      "name": "Brittany Q. Green",
+      "phone": "+5598693198085",
+      "email": "purus.accumsan@aliquam.com",
+      "cpf": "34444997792",
+      "active": true
+    },
+    {
+      "id": 11,
+      "name": "Rachel E. Blanchard",
+      "phone": "+5546578342228",
+      "email": "commodo.tincidunt.nibh@esttemporbibendum.org",
+      "cpf": "40031663388",
+      "active": true
+    },
+    {
+      "id": 12,
+      "name": "Christine U. Rasmussen",
+      "phone": "+5587554571218",
+      "email": "sed.sapien@semperNamtempor.org",
+      "cpf": "13895775883",
+      "active": true
+    },
+    {
+      "id": 13,
+      "name": "Whitney V. Ramirez",
+      "phone": "+5589972715907",
+      "email": "sit.amet@vulputaterisus.co.uk",
+      "cpf": "96042619603",
+      "active": true
+    },
+    {
+      "id": 14,
+      "name": "Suki K. Pope",
+      "phone": "+5527222800407",
+      "email": "malesuada.vel@tempordiam.ca",
+      "cpf": "92433997359",
+      "active": true
+    },
+    {
+      "id": 15,
+      "name": "Maya X. Mcdowell",
+      "phone": "+5598408065616",
+      "email": "hendrerit.neque.In@urnaUt.ca",
+      "cpf": "10471993296",
+      "active": true
+    },
+    {
+      "id": 16,
+      "name": "Herman Z. Cote",
+      "phone": "+5547583171472",
+      "email": "non.quam.Pellentesque@magnamalesuadavel.edu",
+      "cpf": "28301689737",
+      "active": true
+    },
+    {
+      "id": 17,
+      "name": "Stella M. Cole",
+      "phone": "+5544406908475",
+      "email": "fringilla.est.Mauris@eratinconsectetuer.ca",
+      "cpf": "76796821273",
+      "active": true
+    },
+    {
+      "id": 18,
+      "name": "Ursula B. Mercado",
+      "phone": "+5567977881663",
+      "email": "nunc.est.mollis@sedlibero.com",
+      "cpf": "33653894937",
+      "active": true
+    },
+    {
+      "id": 19,
+      "name": "MacKenzie R. Hebert",
+      "phone": "+5505425609899",
+      "email": "malesuada@Fuscediam.co.uk",
+      "cpf": "84310539518",
+      "active": true
+    },
+    {
+      "id": 20,
+      "name": "Basia P. Trevino",
+      "phone": "+5582554385559",
+      "email": "ornare.lectus@necdiam.edu",
+      "cpf": "33836368521",
+      "active": true
+    }
+  ]
+}

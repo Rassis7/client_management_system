@@ -24,7 +24,7 @@ const StyledLoading = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  flex: 1;
   padding: 32px;
   height: 500px;
 

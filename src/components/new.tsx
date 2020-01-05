@@ -1,8 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-import { StyledButton } from "../styles/state";
-// import history from "../service/history";
+import { StyledState } from "../styles/state";
 
 export default function New() {
   const history = useHistory();
@@ -10,8 +9,14 @@ export default function New() {
   const handleClick = () => history.push("/new");
 
   return (
-    <StyledButton size="small" color="#19ad25" onClick={handleClick}>
+    <StyledState.Button
+      background="#19ad25"
+      color="#fff"
+      hover
+      px={20}
+      onClick={handleClick}
+    >
       <span>Novo cliente</span>
-    </StyledButton>
+    </StyledState.Button>
   );
 }

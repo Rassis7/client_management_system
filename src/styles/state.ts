@@ -1,42 +1,73 @@
-import styled from "styled-components";
+import React from "react";
+import styled, { StyledFunction } from "styled-components";
 import { darken } from "polished";
 import InputMask from "react-input-mask";
-
-type IProps = {
-  size: string;
-  color: string;
-  // mt: string;
-  // mb: string;
-  // ml: string;
-  // mr: string;
-};
 
 interface ILiteralProps {
   [key: string]: string;
 }
 
-export const StyledButton = styled.button`
-  background: ${(props: IProps) => props.color};
-  color: #fff;
-  border: 0;
-  border-radius: 4px;
+type IProps = {
+  size?: string;
+  color?: string;
+  background?: string;
+  hover?: boolean;
+  py?: number;
+  px?: number;
+  mx?: number;
+  my?: number;
+  fontSize?: number;
+};
 
+const propsDefault = (props: IProps) => {
+  const sizeLiteral: ILiteralProps = {
+    large: "100",
+    medium: "50",
+    small: "20"
+  };
+  const percent = sizeLiteral[`${props.size}`] || sizeLiteral.small;
+
+  let response: string = `width: ${percent}%;`;
+
+  if (props.color) response = response + `color: ${props.color};`;
+
+  if (props.background) {
+    response = response + `background: ${props.background};`;
+    if (props.hover)
+      response =
+        response +
+        `
+        &:hover {
+          background: ${darken(0.1, `${props.background}`)};
+        }
+      `;
+  }
+
+  if (props.px || props.py)
+    response =
+      response +
+      `padding: ${props.px || 0}px ${props.py || 0}px ${props.px ||
+        0}px ${props.py || 0}px;`;
+
+  if (props.my || props.mx)
+    response =
+      response +
+      `margin: ${props.mx || 0}px ${props.my || 0}px ${props.mx ||
+        0}px ${props.my || 0}px;`;
+
+  if (props.fontSize) response = response + `font-size: ${props.fontSize}px;`;
+
+  return response;
+};
+
+const Button: any = styled.button`
+  ${(props: IProps) => propsDefault(props)}
   display: flex;
   align-items: center;
-  transition: background 0.2s;
-  padding: 15px;
-  width: ${(props: IProps) => {
-    const size: ILiteralProps = {
-      large: "100%",
-      medium: "50%",
-      small: "20%"
-    };
-    return size[props.size] || size.medium;
-  }}}  
 
-  &:hover {
-    background: ${(props: IProps) => darken(0.03, `${props.color}`)};
-  }
+  border: 0;
+  border-radius: 4px;
+  transition: background 0.2s;
 
   span {
     flex: 1;
@@ -45,11 +76,33 @@ export const StyledButton = styled.button`
   }
 `;
 
-export const StyledInputText = styled(InputMask)`
+const InputText: any = styled(InputMask)`
+  ${(props: IProps) => propsDefault(props)}
   border: 1px solid #ddd;
   border-radius: 4px;
-  color: #666;
-  padding: 9px;
-  width: 100%;
-  margin-bottom: 15px;
 `;
+
+const Title: any = styled.span`
+  ${(props: IProps) => propsDefault(props)}
+  text-align: center;
+  font-weight: 800;
+`;
+
+const Text: any = styled.span`
+  ${(props: IProps) => propsDefault(props)}
+`;
+
+const Form: any = styled.form`
+  ${(props: IProps) => propsDefault(props)}
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const StyledState = {
+  InputText,
+  Button,
+  Title,
+  Form,
+  Text
+};

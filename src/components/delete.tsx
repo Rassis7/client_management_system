@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { StyledButton } from "../styles/state";
+import { StyledState } from "../styles/state";
 import { useDispatch } from "react-redux";
 import { Creators as ClientActions } from "../store/ducks/clients";
 import { toast } from "react-toastify";
@@ -45,8 +45,8 @@ export default function Delete({ open, id, onClose }: DeleteProps) {
 
   const handleCancel = () => onClose();
 
-  const handleDelete = () => {
-    dispatch(ClientActions.removeClient(id));
+  const handleDelete = async () => {
+    await dispatch(ClientActions.removeClient(id));
 
     toast.info(`Cliente foi excluído com sucesso`);
     handleCancel();
@@ -58,12 +58,28 @@ export default function Delete({ open, id, onClose }: DeleteProps) {
         <p>Deseja realmente excluir esse Cliente??</p>
 
         <StyledButtonContainer>
-          <StyledButton size="small" color="#f92020" onClick={handleDelete}>
+          <StyledState.Button
+            background="#f92020"
+            color="#fff"
+            hover
+            px={9}
+            mx={10}
+            my={10}
+            onClick={handleDelete}
+          >
             <span>Excluir</span>
-          </StyledButton>
-          <StyledButton size="small" color="#ccc" onClick={handleCancel}>
+          </StyledState.Button>
+          <StyledState.Button
+            background="#ccc"
+            color="#fff"
+            hover
+            px={9}
+            mx={10}
+            my={10}
+            onClick={handleCancel}
+          >
             <span>Cancelar</span>
-          </StyledButton>
+          </StyledState.Button>
         </StyledButtonContainer>
       </StyledDialog>
     </StyledContainer>

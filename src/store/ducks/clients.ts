@@ -46,9 +46,7 @@ const remove = (state = INITIAL_STATE, action: any): IClient[] => {
   const { id } = action;
   const clientIndex = state.findIndex(c => c.id === id);
 
-  if (clientIndex >= 0) {
-    state.splice(clientIndex, 1);
-  }
+  if (clientIndex >= 0) state.splice(clientIndex, 1);
 
   return state;
 };

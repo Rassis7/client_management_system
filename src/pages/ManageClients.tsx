@@ -5,7 +5,7 @@ import { Creators as ClientActions } from "../store/ducks/clients";
 import { Container } from "../styles/layout";
 import { useHistory, useParams } from "react-router-dom";
 
-import { StyledButton, StyledInputText } from "../styles/state";
+import { StyledState } from "../styles/state";
 import { IClient } from "../interfaces/IClient";
 import { toast } from "react-toastify";
 
@@ -26,22 +26,6 @@ const StyledFieldset = styled.div`
   border-radius: 6px;
   padding: 30px;
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
-`;
-
-const StyledTitle = styled.span`
-  color: #999;
-  text-align: center;
-  font-size: 32px;
-  font-weight: 800;
-  color: #ff7575;
-`;
-
-const StyledForm = styled.form`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 450px;
-  margin-top: 50px;
 `;
 
 export default function ManageClients() {
@@ -97,52 +81,84 @@ export default function ManageClients() {
   return (
     <StyledView>
       <StyledFieldset>
-        <StyledTitle>Novo Cliente</StyledTitle>
+        <StyledState.Title color="#ff7575" size="large" fontSize={32}>
+          Novo Cliente
+        </StyledState.Title>
 
-        <StyledForm onSubmit={handleSubmit}>
-          <StyledInputText
+        <StyledState.Form size="large" mx={50} onSubmit={handleSubmit}>
+          <StyledState.InputText
+            px={9}
+            py={9}
+            size="large"
+            mx={5}
+            color="#666"
             mask=""
             type="text"
             value={client?.name}
-            onChange={e => handleChange("name", e.target.value)}
+            onChange={(e: any) => handleChange("name", e.target.value)}
             placeholder="Name"
           />
-          <StyledInputText
+          <StyledState.InputText
+            px={9}
+            py={9}
+            size="large"
+            mx={5}
+            color="#666"
             mask="+5\5 99 99999-9999"
             type="text"
             value={client?.phone}
-            onChange={e => handleChange("phone", e.target.value)}
+            onChange={(e: any) => handleChange("phone", e.target.value)}
             placeholder="Telefone"
           />
-          <StyledInputText
+          <StyledState.InputText
+            px={9}
+            py={9}
+            size="large"
+            mx={5}
+            color="#666"
             mask=""
             type="text"
             value={client?.email}
-            onChange={e => handleChange("email", e.target.value)}
+            onChange={(e: any) => handleChange("email", e.target.value)}
             placeholder="Email"
           />
-          <StyledInputText
+          <StyledState.InputText
+            px={9}
+            py={9}
+            size="large"
+            mx={5}
+            color="#666"
             mask="999.999.999-99"
             type="text"
             value={client?.cpf}
-            onChange={e => handleChange("cpf", e.target.value)}
+            onChange={(e: any) => handleChange("cpf", e.target.value)}
             placeholder="CPF"
             disabled={!!id}
           />
 
-          <StyledButton size="large" color="#ff7575" type="submit">
-            <span>Salvar</span>
-          </StyledButton>
-
-          <StyledButton
+          <StyledState.Button
             size="large"
-            color="#2cb8bf"
+            color="#fff"
+            background="#ff7575"
+            px={10}
+            mx={5}
+            type="submit"
+          >
+            <span>Salvar</span>
+          </StyledState.Button>
+
+          <StyledState.Button
+            size="large"
+            color="#fff"
+            background="#2cb8bf"
+            px={10}
+            mx={5}
             type="button"
             onClick={handleGoToHome}
           >
             <span>Voltar</span>
-          </StyledButton>
-        </StyledForm>
+          </StyledState.Button>
+        </StyledState.Form>
       </StyledFieldset>
     </StyledView>
   );

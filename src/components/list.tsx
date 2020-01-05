@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import styled from "styled-components";
 import { IClient } from "../interfaces/IClient";
-import { StyledButton } from "../styles/state";
+import { StyledState } from "../styles/state";
 import { useHistory } from "react-router-dom";
 import Delete from "./delete";
 import { maskCpf, maskPhone } from "../utils/masks";
@@ -19,20 +19,9 @@ const StyledItem = styled.span`
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
 `;
 
-const StyledTitle = styled.span`
-  font-size: 20px;
-  color: #ff7575;
-  font-weight: 800;
-`;
-
 const StyledInfosDiv = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const StyledInfosText = styled.div`
-  color: #919191;
-  margin-top: 5px;
 `;
 
 const StyledButtonsLayout = styled.div`
@@ -41,27 +30,11 @@ const StyledButtonsLayout = styled.div`
   flex: 1;
 `;
 
-const StyledButtonReEdit = styled(StyledButton)`
-  padding: 8px !important;
-`;
-
 type ListProps = {
   clients: IClient[];
 };
 
 export default function List({ clients }: ListProps) {
-  const clientsMemo = useMemo(
-    () =>
-      clients.map((c: IClient) => {
-        return {
-          ...c,
-          cpf: maskCpf(c.cpf),
-          phone: maskPhone(c.phone)
-        };
-      }),
-    [clients]
-  );
-
   const [openModalDelete, setOpenModalDelete] = useState(false);
   const [idModalDelete, setIdModalDelete] = useState(0);
 
@@ -79,40 +52,48 @@ export default function List({ clients }: ListProps) {
   return (
     <>
       <StyledList>
-        {clientsMemo.map(c => (
+        {clients.map(c => (
           <StyledItem key={c.cpf}>
-            <StyledTitle>{c.name}</StyledTitle>
+            <StyledState.Title color="#ff7575" fontSize={25}>
+              {c.name}
+            </StyledState.Title>
 
             <StyledInfosDiv>
-              <StyledInfosText>
+              <StyledState.Text color="#919191" mx={5} size="large">
                 <strong>Email:</strong> {c.email}
-              </StyledInfosText>
-              <StyledInfosText>
-                <strong>Telefone:</strong> {c.phone}
-              </StyledInfosText>
-              <StyledInfosText>
-                <strong>CPF:</strong> {c.cpf}
-              </StyledInfosText>
+              </StyledState.Text>
+              <StyledState.Text color="#919191" mx={5} size="large">
+                <strong>Telefone:</strong> {maskPhone(c.phone)}
+              </StyledState.Text>
+              <StyledState.Text color="#919191" mx={5} size="large">
+                <strong>CPF:</strong> {maskCpf(c.cpf)}
+              </StyledState.Text>
             </StyledInfosDiv>
 
             <StyledButtonsLayout>
-              <StyledButtonReEdit
-                size="small"
-                color="#f97a20"
+              <StyledState.Button
+                px={8}
+                mx={15}
+                background="#f97a20"
+                color="#fff"
+                hover
                 type="submit"
                 onClick={() => handleEditClick(Number(c.id))}
               >
                 <span>Editar</span>
-              </StyledButtonReEdit>
+              </StyledState.Button>
 
-              <StyledButtonReEdit
-                size="small"
-                color="#f92020"
+              <StyledState.Button
+                px={8}
+                mx={15}
+                background="#f92020"
+                color="#fff"
+                hover
                 type="submit"
                 onClick={() => handleDeleteClick(Number(c.id))}
               >
                 <span>Excluir</span>
-              </StyledButtonReEdit>
+              </StyledState.Button>
             </StyledButtonsLayout>
           </StyledItem>
         ))}

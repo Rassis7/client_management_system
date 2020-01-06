@@ -2,7 +2,7 @@
 
 Usar typescript junto ao React e Redux (Duck Pattern), criando uma aplicação do zero (tanto em layout, quando tm funcionalidades)
 
-## `yarn`
+### `yarn`
 
 Para instalar as dependências do projeto.
 

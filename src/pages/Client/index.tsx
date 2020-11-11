@@ -1,41 +1,34 @@
-import React, { useCallback, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { IClient } from "../../interfaces/IClient";
+import React, { useContext, useEffect } from "react";
 import api from "../../service/api";
-import { Creators as ClientActions } from "../../store/ducks/clients";
 import List from "../../components/list";
 
 import New from "../../components/new";
 
 import { Container } from "../../styles/layout";
 import { StyledView, StyledLoading } from "./styles";
+import { AppContext } from "../../context/AppContext";
+import { Types } from "../../context/reducers/AppReducer";
 
 export default function Client() {
-  const dispatch = useDispatch();
-  const clients = useSelector((state: any) => state.clients);
-
-  const handleLoadClient = useCallback(
-    (clients: IClient[]) => dispatch(ClientActions.loadClient(clients)),
-    [dispatch]
-  );
+  const { state, dispatch } = useContext(AppContext);
 
   useEffect(() => {
-    if (!!clients.length) return;
+    if (!!state.length) return;
 
     const getClients = async (): Promise<void> => {
-      const response = await api.get("/clients");
-      handleLoadClient(response.data);
+      const response = await api.get("/clients?_sort=id&_order=desc");
+      dispatch({ type: Types.LOAD_CLIENT, payload: response.data });
     };
 
     getClients();
-  }, [clients, handleLoadClient]);
+  }, [state, dispatch]);
 
   return (
     <Container>
-      {!!clients.length ? (
+      {!!state.length ? (
         <StyledView>
           <New />
-          <List clients={clients} />
+          <List clients={state} />
         </StyledView>
       ) : (
         <StyledLoading>

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyledState } from "../../styles/state";
-import { useDispatch } from "react-redux";
-import { Creators as ClientActions } from "../../store/ducks/clients";
 import { toast } from "react-toastify";
 
 import { StyledContainer, StyledDialog, StyledButtonContainer } from "./styles";
+import { AppContext } from "../../context/AppContext";
+import { Types } from "../../context/reducers/AppReducer";
 
 interface IProps {
   open: boolean;
@@ -13,12 +13,13 @@ interface IProps {
 }
 
 const Delete: React.FC<IProps> = ({ open, id, onClose }) => {
-  const dispatch = useDispatch();
+  const { dispatch } = useContext(AppContext);
 
   const handleCancel = () => onClose();
 
-  const handleDelete = async () => {
-    await dispatch(ClientActions.removeClient(id));
+  const handleDelete = () => {
+    if (!id) return;
+    dispatch({ type: Types.REMOVE_CLIENT, payload: { id } });
 
     toast.info(`Cliente foi excluído com sucesso`);
     handleCancel();

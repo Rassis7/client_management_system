@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Creators as ClientActions } from "../../store/ducks/clients";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
 import { StyledState } from "../../styles/state";
@@ -8,51 +6,42 @@ import { IClient } from "../../interfaces/IClient";
 import { toast } from "react-toastify";
 
 import { StyledView, StyledFieldset } from "./styles";
+import { AppContext } from "../../context/AppContext";
+import { Types } from "../../context/reducers/AppReducer";
 
 export default function ManageClients() {
-  const dispatch = useDispatch();
+  const { state, dispatch } = useContext(AppContext);
   const history = useHistory();
   const { id } = useParams<{ id?: string }>();
 
-  const clientsState: IClient[] = useSelector((state: any) => state.clients);
-
-  const [client, setClient] = useState<IClient>({
-    name: "",
-    phone: "",
-    email: "",
-    cpf: "",
-  });
+  const [client, setClient] = useState<IClient>({} as IClient);
 
   useEffect(() => {
-    if (!id && clientsState.length === 0) return;
+    if (!id && state.length === 0) return;
 
-    const client = clientsState.filter((c: IClient) => c.id === id);
-    setClient(client[0]);
-  }, [clientsState, id]);
+    const client = state.find((c: IClient) => c.id === id);
+    client && setClient(client);
+  }, [state, id]);
 
   const handleChange = (field: string, value: string) =>
     setClient({ ...client, [field]: value });
 
   const handleGoToHome = () => history.push("/");
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const clientFormatted = {
-      ...client,
-      phone: client.phone
-        .replace(" ", "")
-        .replace("-", "")
-        .replace("_", ""),
-      cpf: client.cpf
-        .replace(".", "")
-        .replace("-", "")
-        .replace("_", ""),
-    };
+    const phone = client.phone.replace(/([^\d])+/gim, "");
+    const cpf = client.cpf.replace(/([^\d])+/gim, "");
 
-    !id
-      ? await dispatch(ClientActions.addClient(clientFormatted))
-      : await dispatch(ClientActions.updateClient(clientFormatted));
+    dispatch({
+      type: !id ? Types.ADD_CLIENT : Types.UPDATE_CLIENT,
+      payload: {
+        ...client,
+        phone,
+        cpf,
+      },
+    });
 
     toast.info(`Cliente foi ${id ? "EDITADO" : "CRIADO"} com sucesso`);
 

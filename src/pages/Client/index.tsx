@@ -9,7 +9,7 @@ import { StyledView, StyledLoading } from "./styles";
 import { AppContext } from "../../context/AppContext";
 import { Types } from "../../context/reducers/AppReducer";
 
-export default function Client() {
+const Client: React.FC = () => {
   const { state, dispatch } = useContext(AppContext);
 
   useEffect(() => {
@@ -37,4 +37,6 @@ export default function Client() {
       )}
     </Container>
   );
-}
+};
+
+export default Client;

@@ -24,10 +24,13 @@ export const reducer = (state: IClient[], action: Actions) => {
       return [...state, ...action.payload];
 
     case Types.ADD_CLIENT:
-      return [
-        ...state,
-        { id: state.length + 1, active: true, ...action.payload },
-      ];
+      state.unshift({
+        id: state.length + 1,
+        active: true,
+        ...action.payload,
+      });
+
+      return [...state];
 
     case Types.UPDATE_CLIENT:
       const client = action.payload;

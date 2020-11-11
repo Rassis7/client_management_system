@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import { StyledState } from "../../styles/state";
 
-export default function New() {
+const New: React.FC = () => {
   const history = useHistory();
 
   const handleClick = () => history.push("/new");
@@ -19,4 +19,6 @@ export default function New() {
       <span>Novo cliente</span>
     </StyledState.Button>
   );
-}
+};
+
+export default New;

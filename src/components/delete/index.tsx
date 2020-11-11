@@ -1,46 +1,18 @@
 import React from "react";
-import styled from "styled-components";
-import { StyledState } from "../styles/state";
+import { StyledState } from "../../styles/state";
 import { useDispatch } from "react-redux";
-import { Creators as ClientActions } from "../store/ducks/clients";
+import { Creators as ClientActions } from "../../store/ducks/clients";
 import { toast } from "react-toastify";
 
-const StyledContainer = styled.div`
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 50%;
-  z-index: 999;
-`;
+import { StyledContainer, StyledDialog, StyledButtonContainer } from "./styles";
 
-const StyledDialog = styled.dialog`
-  position: relative;
-  width: 500px;
-  height: 150px;
-  border-radius: 4px;
-  border: 1px solid #666;
-  padding: 32px;
-
-  p {
-    align-self: center;
-    font-size: 20px;
-  }
-`;
-
-type DeleteProps = {
+interface IProps {
   open: boolean;
   id?: number;
   onClose(): void;
-};
+}
 
-const StyledButtonContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
-export default function Delete({ open, id, onClose }: DeleteProps) {
+const Delete: React.FC<IProps> = ({ open, id, onClose }) => {
   const dispatch = useDispatch();
 
   const handleCancel = () => onClose();
@@ -84,4 +56,6 @@ export default function Delete({ open, id, onClose }: DeleteProps) {
       </StyledDialog>
     </StyledContainer>
   );
-}
+};
+
+export default Delete;

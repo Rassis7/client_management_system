@@ -1,40 +1,22 @@
-import React, { useState, useMemo } from "react";
-import styled from "styled-components";
-import { IClient } from "../interfaces/IClient";
-import { StyledState } from "../styles/state";
+import React, { useState } from "react";
+import { IClient } from "../../interfaces/IClient";
+import { StyledState } from "../../styles/state";
 import { useHistory } from "react-router-dom";
-import Delete from "./delete";
-import { maskCpf, maskPhone } from "../utils/masks";
+import Delete from "../delete";
+import { maskCpf, maskPhone } from "../../utils/masks";
 
-const StyledList = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-  list-style: none;
-`;
+import {
+  StyledList,
+  StyledItem,
+  StyledInfosDiv,
+  StyledButtonsLayout,
+} from "./styles";
 
-const StyledItem = styled.span`
-  background: #fff;
-  padding: 32px;
-  box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
-`;
-
-const StyledInfosDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const StyledButtonsLayout = styled.div`
-  display: flex;
-  justify-content: space-around;
-  flex: 1;
-`;
-
-type ListProps = {
+interface ListProps {
   clients: IClient[];
-};
+}
 
-export default function List({ clients }: ListProps) {
+const List: React.FC<ListProps> = ({ clients }) => {
   const [openModalDelete, setOpenModalDelete] = useState(false);
   const [idModalDelete, setIdModalDelete] = useState(0);
 
@@ -52,7 +34,7 @@ export default function List({ clients }: ListProps) {
   return (
     <>
       <StyledList>
-        {clients.map(c => (
+        {clients.map((c) => (
           <StyledItem key={c.cpf}>
             <StyledState.Title color="#ff7575" fontSize={25}>
               {c.name}
@@ -108,4 +90,6 @@ export default function List({ clients }: ListProps) {
       </StyledList>
     </>
   );
-}
+};
+
+export default List;

@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { StyledFunction } from "styled-components";
+import styled from "styled-components";
 import { darken } from "polished";
 import InputMask from "react-input-mask";
 
@@ -7,7 +7,7 @@ interface ILiteralProps {
   [key: string]: string;
 }
 
-type IProps = {
+interface IProps {
   size?: string;
   color?: string;
   background?: string;
@@ -17,13 +17,13 @@ type IProps = {
   mx?: number;
   my?: number;
   fontSize?: number;
-};
+}
 
 const propsDefault = (props: IProps) => {
   const sizeLiteral: ILiteralProps = {
     large: "100",
     medium: "50",
-    small: "20"
+    small: "20",
   };
   const percent = sizeLiteral[`${props.size}`] || sizeLiteral.small;
 
@@ -60,7 +60,7 @@ const propsDefault = (props: IProps) => {
   return response;
 };
 
-const Button: any = styled.button`
+const Button = styled.button`
   ${(props: IProps) => propsDefault(props)}
   display: flex;
   align-items: center;
@@ -76,23 +76,25 @@ const Button: any = styled.button`
   }
 `;
 
-const InputText: any = styled(InputMask)`
-  ${(props: IProps) => propsDefault(props)}
+const InputText = styled(({ ...props }) =>
+  React.createElement(InputMask, { ...props }, props.children)
+)`
   border: 1px solid #ddd;
   border-radius: 4px;
+  ${(props: IProps) => propsDefault(props)}
 `;
 
-const Title: any = styled.span`
+const Title = styled.span`
   ${(props: IProps) => propsDefault(props)}
   text-align: center;
   font-weight: 800;
 `;
 
-const Text: any = styled.span`
+const Text = styled.span`
   ${(props: IProps) => propsDefault(props)}
 `;
 
-const Form: any = styled.form`
+const Form = styled.form`
   ${(props: IProps) => propsDefault(props)}
   display: flex;
   align-items: center;
@@ -104,5 +106,5 @@ export const StyledState = {
   Button,
   Title,
   Form,
-  Text
+  Text,
 };

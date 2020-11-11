@@ -1,37 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-import { Creators as ClientActions } from "../store/ducks/clients";
-import { Container } from "../styles/layout";
+import { Creators as ClientActions } from "../../store/ducks/clients";
 import { useHistory, useParams } from "react-router-dom";
 
-import { StyledState } from "../styles/state";
-import { IClient } from "../interfaces/IClient";
+import { StyledState } from "../../styles/state";
+import { IClient } from "../../interfaces/IClient";
 import { toast } from "react-toastify";
 
-const StyledView = styled(Container)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const StyledFieldset = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  background: #fff;
-  width: 500px;
-  height: 600px;
-  border-radius: 6px;
-  padding: 30px;
-  box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
-`;
+import { StyledView, StyledFieldset } from "./styles";
 
 export default function ManageClients() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { id } = useParams();
+  const { id } = useParams<{ id?: string }>();
 
   const clientsState: IClient[] = useSelector((state: any) => state.clients);
 
@@ -39,13 +20,13 @@ export default function ManageClients() {
     name: "",
     phone: "",
     email: "",
-    cpf: ""
+    cpf: "",
   });
 
   useEffect(() => {
     if (!id && clientsState.length === 0) return;
 
-    const client = clientsState.filter((c: IClient) => c.id == id);
+    const client = clientsState.filter((c: IClient) => c.id === id);
     setClient(client[0]);
   }, [clientsState, id]);
 
@@ -66,7 +47,7 @@ export default function ManageClients() {
       cpf: client.cpf
         .replace(".", "")
         .replace("-", "")
-        .replace("_", "")
+        .replace("_", ""),
     };
 
     !id

@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-import { StyledState } from "../styles/state";
+import { StyledState } from "../../styles/state";
 
 export default function New() {
   const history = useHistory();

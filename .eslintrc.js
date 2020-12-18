@@ -1,44 +1,52 @@
 module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-    jest: true
+  "env": {
+      "browser": true,
+      "es6": true
   },
-  extends: [
-    "react-app",
-    "airbnb",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint"
+  "extends": [
+      "plugin:react/recommended",
+      "airbnb",
+      "plugin:@typescript-eslint/recommended"
   ],
-  globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly"
+  "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
   },
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true
-    },
-    ecmaVersion: 2018,
-    sourceType: "module"
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 2018,
+      "sourceType": "module"
   },
-  plugins: ["react", "import", "jsx-a11y"],
-  rules: {
-    "react/jsx-filename-extension": [
-      "error",
-      {
-        extensions: [".tsx"]
-      }
-    ],
+  "plugins": [
+      "react",
+      "react-hooks",
+      "@typescript-eslint"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "warn",
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "import/prefer-default-export": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/explicit-member-accessibility": "off"
+    "no-use-before-define": "off",
+    "no-shadow": "off",
+    "no-octal-escape": "off",
+    "no-unused-expressions": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
   },
-  settings: {
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
-    },
+  "settings": {
     "import/resolver": {
-      typescript: {}
+      "typescript": {}
     }
   }
-};
+}

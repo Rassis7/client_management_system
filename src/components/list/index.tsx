@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { IClient } from "../../interfaces/IClient";
-import { StyledState } from "../../styles/state";
-import { useHistory } from "react-router-dom";
-import Delete from "../delete";
-import { maskCpf, maskPhone } from "../../utils/masks";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { IClient } from '../../interfaces/IClient';
+import { StyledState } from '../../styles/state';
+import Delete from '../delete';
+import { maskCpf, maskPhone } from '../../utils/masks';
 
 import {
   StyledList,
   StyledItem,
   StyledInfosDiv,
   StyledButtonsLayout,
-} from "./styles";
+} from './styles';
 
 interface ListProps {
   clients: IClient[];
@@ -42,13 +42,19 @@ const List: React.FC<ListProps> = ({ clients }) => {
 
             <StyledInfosDiv>
               <StyledState.Text color="#919191" mx={5} size="large">
-                <strong>Email:</strong> {c.email}
+                <strong>Email:</strong>
+                {' '}
+                {c.email}
               </StyledState.Text>
               <StyledState.Text color="#919191" mx={5} size="large">
-                <strong>Telefone:</strong> {maskPhone(c.phone)}
+                <strong>Telefone:</strong>
+                {' '}
+                {maskPhone(c.phone)}
               </StyledState.Text>
               <StyledState.Text color="#919191" mx={5} size="large">
-                <strong>CPF:</strong> {maskCpf(c.cpf)}
+                <strong>CPF:</strong>
+                {' '}
+                {maskCpf(c.cpf)}
               </StyledState.Text>
             </StyledInfosDiv>
 

@@ -1,6 +1,6 @@
-import React, { createContext, useReducer, Dispatch } from "react";
-import { IClient } from "../interfaces/IClient";
-import { reducer, Actions } from "./reducers/AppReducer";
+import React, { createContext, useReducer, Dispatch } from 'react';
+import { IClient } from '../interfaces/IClient';
+import { reducer, Actions } from './reducers/AppReducer';
 
 interface IContext {
   state: IClient[];

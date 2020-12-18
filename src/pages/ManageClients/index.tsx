@@ -1,8 +1,8 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { StyledState } from "../../styles/state";
-import { StyledView, StyledFieldset } from "./styles";
-import Form from "./components/Form";
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { StyledState } from '../../styles/state';
+import { StyledView, StyledFieldset } from './styles';
+import Form from './components/Form';
 
 const ManageClients = () => {
   const { id } = useParams<{ id?: string }>();

@@ -1,9 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Container } from "../../styles/layout";
+import { Container } from '../../styles/layout';
 
-export const StyledView = styled(Container)`
-  display: flex;
+export const StyledView = styled(Container as any)`
   justify-content: center;
   align-items: center;
 `;

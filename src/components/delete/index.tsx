@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import { StyledState } from "../../styles/state";
-import { toast } from "react-toastify";
+import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
+import { StyledState } from '../../styles/state';
 
-import { StyledContainer, StyledDialog, StyledButtonContainer } from "./styles";
-import { AppContext } from "../../context/AppContext";
-import { Types } from "../../context/reducers/AppReducer";
+import { StyledContainer, StyledDialog, StyledButtonContainer } from './styles';
+import { AppContext } from '../../context/AppContext';
+import { Types } from '../../context/reducers/AppReducer';
 
 interface IProps {
   open: boolean;
@@ -21,7 +21,7 @@ const Delete: React.FC<IProps> = ({ open, id, onClose }) => {
     if (!id) return;
     dispatch({ type: Types.REMOVE_CLIENT, payload: { id } });
 
-    toast.info(`Cliente foi excluído com sucesso`);
+    toast.info('Cliente foi excluído com sucesso');
     handleCancel();
   };
 

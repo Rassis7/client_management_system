@@ -1,10 +1,11 @@
-import { IClient } from "../../interfaces/IClient";
+import { listenerCount } from 'process';
+import { IClient } from '../../interfaces/IClient';
 
 export enum Types {
-  LOAD_CLIENT = "LOAD_CLIENT",
-  ADD_CLIENT = "ADD_CLIENT",
-  UPDATE_CLIENT = "UPDATE_CLIENT",
-  REMOVE_CLIENT = "REMOVE_CLIENT",
+  LOAD_CLIENT = 'LOAD_CLIENT',
+  ADD_CLIENT = 'ADD_CLIENT',
+  UPDATE_CLIENT = 'UPDATE_CLIENT',
+  REMOVE_CLIENT = 'REMOVE_CLIENT',
 }
 
 export type Actions =
@@ -32,20 +33,24 @@ export const reducer = (state: IClient[], action: Actions) => {
 
       return [...state];
 
-    case Types.UPDATE_CLIENT:
+    case Types.UPDATE_CLIENT: {
       const client = action.payload;
       const clientIndex = state.findIndex((c) => c.id === client.id);
-      if (clientIndex >= 0) state[clientIndex] = client;
 
-      return [...state];
+      const newState = state;
+      if (clientIndex >= 0) newState[clientIndex] = client;
 
-    case Types.REMOVE_CLIENT:
+      return [...newState];
+    }
+
+    case Types.REMOVE_CLIENT: {
       const { id } = action.payload;
       const index = state.findIndex((c) => c.id === id);
 
       index >= 0 && state.splice(index, 1);
 
       return [...state];
+    }
     default:
       return [...state];
   }

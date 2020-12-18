@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { darken } from "polished";
-import InputMask from "react-input-mask";
+import React from 'react';
+import styled from 'styled-components';
+import { darken } from 'polished';
+import InputMask from 'react-input-mask';
 
 interface ILiteralProps {
   [key: string]: string;
@@ -21,41 +21,41 @@ interface IProps {
 
 const propsDefault = (props: IProps) => {
   const sizeLiteral: ILiteralProps = {
-    large: "100",
-    medium: "50",
-    small: "20",
+    large: '100',
+    medium: '50',
+    small: '20',
   };
   const percent = sizeLiteral[`${props.size}`] || sizeLiteral.small;
 
-  let response: string = `width: ${percent}%;`;
+  let response = `width: ${percent}%;`;
 
-  if (props.color) response = response + `color: ${props.color};`;
+  if (props.color) response += `color: ${props.color};`;
 
   if (props.background) {
-    response = response + `background: ${props.background};`;
-    if (props.hover)
-      response =
-        response +
-        `
+    response += `background: ${props.background};`;
+    if (props.hover) {
+      response
+        += `
         &:hover {
           background: ${darken(0.1, `${props.background}`)};
         }
       `;
+    }
   }
 
-  if (props.px || props.py)
-    response =
-      response +
-      `padding: ${props.px || 0}px ${props.py || 0}px ${props.px ||
-        0}px ${props.py || 0}px;`;
+  if (props.px || props.py) {
+    response
+      += `padding: ${props.px || 0}px ${props.py || 0}px ${props.px
+        || 0}px ${props.py || 0}px;`;
+  }
 
-  if (props.my || props.mx)
-    response =
-      response +
-      `margin: ${props.mx || 0}px ${props.my || 0}px ${props.mx ||
-        0}px ${props.my || 0}px;`;
+  if (props.my || props.mx) {
+    response
+      += `margin: ${props.mx || 0}px ${props.my || 0}px ${props.mx
+        || 0}px ${props.my || 0}px;`;
+  }
 
-  if (props.fontSize) response = response + `font-size: ${props.fontSize}px;`;
+  if (props.fontSize) response += `font-size: ${props.fontSize}px;`;
 
   return response;
 };
@@ -76,9 +76,7 @@ const Button = styled.button`
   }
 `;
 
-const InputText = styled(({ ...props }) =>
-  React.createElement(InputMask, { ...props }, props.children)
-)`
+const InputText = styled(({ ...props }) => React.createElement(InputMask, { ...props }, props.children))`
   border: 1px solid #ddd;
   border-radius: 4px;
   ${(props: IProps) => propsDefault(props)}

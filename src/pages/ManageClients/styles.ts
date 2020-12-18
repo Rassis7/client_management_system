@@ -1,10 +1,12 @@
+import React from 'react';
 import styled from 'styled-components';
 
 import { Container } from '../../styles/layout';
 
-export const StyledView = styled(Container as any)`
+export const StyledView = styled(({ ...props }) => React.createElement(Container, { ...props }, props.children))`
   justify-content: center;
   align-items: center;
+
 `;
 
 export const StyledFieldset = styled.div`

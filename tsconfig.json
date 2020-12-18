@@ -1,9 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "es6",
+    "noImplicitAny": false,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
+    "removeComments": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -13,8 +19,19 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
-    "typeRoots": ["node_modules/@types"]
+    "jsx": "react-jsx",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "baseUrl": "src",
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "src/index.tsx", "App.tsx"]
+  "include": [
+    "src",
+    "src/index.tsx",
+    "App.tsx"
+  ],
+  "files": [
+    "src/react-app-env.d.ts"
+  ]
 }

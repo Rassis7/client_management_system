@@ -1,4 +1,3 @@
-import { listenerCount } from 'process';
 import { IClient } from '../../interfaces/IClient';
 
 export enum Types {
